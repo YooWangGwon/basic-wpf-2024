@@ -8,7 +8,7 @@
         - WPF 이미지 벡터방식
         - XAML 화면 디자인 - 안드로이드 개발시 Java XML로 화면디자인과 PyQt로 디자인과 동일
 
-    - XMAL(엑스에이엠엘, 재믈)
+    - XAML(엑스에이엠엘, 재믈)
         - 여는 태크<Window>, 닫는 태그</Window>
         - 합치면 <Window/> -> Window 태그 안데 다른 객체가 없음
         - 여는 태그와 닫는 태그 사이에 다른 태그(객체)를 넣어서 디자인
@@ -27,5 +27,18 @@
     - 디자인 코딩 방법
     - 디자인, 백그라운드 코딩, C#코드 완전 분리 개발 -> MVVM 디자인 패턴
 
-## 2일차
+## 2일차(23.04.30)
 - WPF 기본학습
+    - HorizontalAlignment : 수평 위치 조절 -> Left, Right, Center, Stretch
+    - VerticalAlignment : 수직 위치 조절 -> Top, Center, Bottom
+    - 데이터바인딩 - 데이터 소스(DB, 엑셀, txt, 클라우드에 보관된 데이터 원본)에 데이터를 쉽게 가져다쓰기 위해 데이터 핸들링 방법
+        - xaml : {Binding Path=속성, ElementName=객체, Mode=(OneWay|TwoWay), StringFormat={}{0:#,#}}
+        - dataContext : 데이터를 담아서 전달하는 중간 단계의 개체
+        - 변환기 : 데이터 바인딩 시 유형을 객체 유형으로 변환
+        - 전통적인 윈폼 코드비하인드에서 데이터를 처리하는 것을 지양 - 디자인, 개발 부분 분리
+
+## 3일차
+- WPF 기본학습
+    - 데이터 바인딩 마무리
+    - 디자인 리소스
+- WPF MVVM

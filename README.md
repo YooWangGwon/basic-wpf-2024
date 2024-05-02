@@ -67,6 +67,25 @@
         - App.xmal Resources -> 프로젝트 내 모든 화면에 적용되는 디자인
         - 리소스 사전 - 공유할 디자인 내용이 많을 때 독립적인 파일로 따로 지정하여 사용
         - 정적(Static), 동적(Dynamic)
+        - Style을 통해 특정 속성값 뿐만이 아닌 디자인 자체를 리소스에 담을 수 있음
+        ```csharp
+        <Style x:Key="ButtonAccentVisual">
+            <Setter Property="ItemsControl.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid>
+                            <Rectangle Fill="#25A2FA" RadiusX="10" RadiusY="10" Stroke="Black" StrokeThickness="2"/>
+                            <Label Content="Click"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="White" FontWeight="Bold" FontSize="20"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        ```
+
 
 - WPF MVVM
     - MVC(Model, Viewm, Controller)

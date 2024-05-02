@@ -38,7 +38,77 @@
         - 전통적인 윈폼 코드비하인드에서 데이터를 처리하는 것을 지양 - 디자인, 개발 부분 분리
 
 ## 3일차
+- WPF에서 중요한 개념(Winform과 차이점) ★★★
+    1. 데이터 바인딩 : 바인딩 키워드로 코드와 디자인을 분리
+    2. 옵저버 패턴 : 값이 변경된 사실을 사용자에게 공지 (OnPropertyChanged 이벤트)
+    3. 디자인 리소스 : 각 컨트롤마다 디자인(X), 리소스를 통해 디자인을 공유 -> 리소스만 변경해도 디자인을 일괄적으로 변경
+
 - WPF 기본학습
     - 데이터 바인딩 마무리
+
+    - INofity(OnPropertyChanged)
+    ```csharp
+     // 우리가 만드는 클래스의 프로퍼티(속성값)이 변경되는 것을 알려주는 이벤트 핸들러
+     public event PropertyChangedEventHandler? PropertyChanged;
+
+     // 프로퍼티가 변경되었어요!!
+     protected void OnPropertyChanged(string propertyName) // protected : Notifier과 Notifier을 상속받은 클래스만 사용가능
+     {
+         if(PropertyChanged != null) // 프로퍼티가 변경된 경우
+         {
+             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+         }
+     }
+    ```
+
     - 디자인 리소스
+        - 리소스를 통해 디자인을 공유
+        - 각화면당 리소스가 따로 존재 -> 자기 화면에만 적용되는 디자인
+        - App.xmal Resources -> 프로젝트 내 모든 화면에 적용되는 디자인
+        - 리소스 사전 - 공유할 디자인 내용이 많을 때 독립적인 파일로 따로 지정하여 사용
+        - 정적(Static), 동적(Dynamic)
+
 - WPF MVVM
+    - MVC(Model, Viewm, Controller)
+        - 웹개발(Spring, ASP.NET MVC, dJango, etc...)에서 현재도 사용되고 있음
+        - Model : Data 입출력 처리를 담당, View에 제공할 데이터
+        - View : 디스플레이 화면 담당
+        - Controller : View를 제어, Model 처리 중앙에 관장
+
+    - MVVM(Model View ViewModel)
+        - Model : Data 입출력(DB Side), View에 제공할 데이터
+        - View : 화면, 순수 xaml로만 구성
+        - ViewModel : 뷰에 대한 메서드, 액션, INotifyPropertyChanged를 구현
+
+        ![MVVM패턴]()
+
+    - 권장 구현방법
+        - ViewModel 생성, 알림 속성 구현
+        - View에 ViewModel을 데이터바인딩
+        - Model DB작업 독립적으로 구현
+
+    - MVVM 구현을 도와주는 프레임워크
+        0. ~~MVVMlight.ToolKit~~ 3rd Party 개발. 2009년부터 시작 2014년도 이후부터는 더이상 개발이나 지원이 없음
+        1. **Caliburn.Micro** : 3rd Party 개발. MVVM이 아주 간단, 중소형 프로젝트에 적합. 강력 but 디버깅이 조금 어려움 
+        3. AvaloniaUI : 3rd Party 개발. 크로스플랫폼. 디자인은 가장 좋음
+        2. Prism : Microsoft 개발. 매우 어려움. 대규모 프로젝트 활용
+
+- Caliburn.Micro
+    1. 프로젝트 생성 후 MainWindow.xaml 삭제
+    2. Models, Views, ViewModels 폴더(네임스페이스) 생성
+    3. 종속성 NuGet 패키지 Caliburn.Micro 설치
+    4. 루트 폴더에 Bootstrapper.cs 클래스 생성, 작성
+    5. App.xaml에서 StartupUri를 삭제
+    6. App.xaml에 Bootstrapper 클래스를 리소스 사전에 등록
+    7. App.xaml에 App() 생성자 추가
+    8. ViewModels 폴더에 MainViewModel.cs 클래스 생성
+    9. Bootstrapper.cs에 OnStartup()에 내용을 변경
+    10. Views에 MainView.xaml를 생성
+
+    - 작업(3명) 분리
+        - DB 개발자 : DBMS 테이블 생성, Models에 클래스 작업, 
+            - Model 폴더 안에 테이블명과 동일하게 클래스 생성
+            - 테이블의 컬럼에 대한 프로퍼티 생성
+        - 화면 디자이너
+            - Views 폴더에 있는 xaml 파일을 디자인 작업
+        - 총괄 개발자

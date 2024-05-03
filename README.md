@@ -1,7 +1,7 @@
 # basic-wpf-2024
 부경대학교 2024 IoT 개발자 과정 WPF 리포지토리
 
-## 1일차(23.04.29)
+## 1일차(24.04.29)
 - WPF(Window Presentation Foundation) 기본학습
     - 기존의 Winforms의 단점을 보완하여 확장된 WPF
         - 이전의 Winforms는 이미지 비트맵 방식(2D) -> 확대를 하면 할수록 이미지 깨짐 현상 발생
@@ -27,7 +27,7 @@
     - 디자인 코딩 방법
     - 디자인, 백그라운드 코딩, C#코드 완전 분리 개발 -> MVVM 디자인 패턴
 
-## 2일차(23.04.30)
+## 2일차(24.04.30)
 - WPF 기본학습
     - HorizontalAlignment : 수평 위치 조절 -> Left, Right, Center, Stretch
     - VerticalAlignment : 수직 위치 조절 -> Top, Center, Bottom
@@ -37,7 +37,7 @@
         - 변환기 : 데이터 바인딩 시 유형을 객체 유형으로 변환
         - 전통적인 윈폼 코드비하인드에서 데이터를 처리하는 것을 지양 - 디자인, 개발 부분 분리
 
-## 3일차
+## 3일차(24.05.02)
 - WPF에서 중요한 개념(Winform과 차이점) ★★★
     1. 데이터 바인딩 : 바인딩 키워드로 코드와 디자인을 분리
     2. 옵저버 패턴 : 값이 변경된 사실을 사용자에게 공지 (OnPropertyChanged 이벤트)
@@ -131,3 +131,30 @@
         - 화면 디자이너
             - Views 폴더에 있는 xaml 파일을 디자인 작업
         - 총괄 개발자
+
+## 4일차(24.05.03)
+- Caliburn.Micro
+    - Xaml디자이너 - xaml 파일만 디자인
+    - ViewModel 개발자 - Model에 있는 DB관련 정보와 View와 연계 전체구현 작업
+
+- Caliburn.Micro
+    - Xaml 디자인시 {Binding ...} 잘 사용하지 않음
+    - 대신 x:Name을 사용
+
+- MVVM
+    - 예외발생 시, 예외메시지가 표시없이 프로그램이 종료됨
+    - ViewModel에서 F5로 디버깅을 하여 예외가 발생하는 부분 탐색
+    - View.xaml 바인딩, 버튼 클릭 이름(ViewModel 속성, 메서드) 지정에 주의해야함
+    - Model은 DB 테이블 컬럼명과 일치, CRUD 쿼리문 오타 주의
+    - ViewModel부분
+        - 변수, 속성으로 분리
+        - 속성이 Model내의 속성과 이름이 일치해야함
+        - List 사용 불가 -> BindableCollection으로 변경
+        - 메서드와 이름이 동일한 Can~으로 시작되는 프로퍼티 -> 버튼 활성/비활성화
+        - 모든 속성에 NotifyofPropertyChange() 매서드 존재!!(값 변경 알림)
+
+    ![실행화면](https://raw.githubusercontent.com/YooWangGwon/basic-wpf-2024/main/images/wpf002.png)
+
+## 5일차
+- Caliburn.Micro + MahApps.Metro
+    - Metro(Modern UI)디자인 접목

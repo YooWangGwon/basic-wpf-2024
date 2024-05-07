@@ -155,6 +155,38 @@
 
     ![실행화면](https://raw.githubusercontent.com/YooWangGwon/basic-wpf-2024/main/images/wpf002.png)
 
-## 5일차
+## 5일차(24.05.07)
 - Caliburn.Micro + MahApps.Metro
     - Metro(Modern UI)디자인 접목
+    - 접목 가능한 디자인
+        - MahApps.Metro : https://mahapps.com/
+            - 적용 방법 : https://mahapps.com/docs/guides/quick-start
+        - Icon.Pack.Browser : https://github.com/MahApps/IconPacks.Browser/releases/tag/1.0.0
+            - MahApps 에서 지원하는 무료 아이콘
+        - Material Design In XAML : http://materialdesigninxaml.net/
+
+    - 디자인을 적용한 메인화면
+    ![메인화면](https://raw.githubusercontent.com/YooWangGwon/basic-wpf-2024/main/images/wpf003.png)
+
+    - 메트로 다이얼로그
+    ![다이얼로그](https://raw.githubusercontent.com/YooWangGwon/basic-wpf-2024/main/images/wpf004.png)
+
+- Movie API 연동앱, MovieFinder 2024
+    - DB(SQL Server) 연동
+    - MahApps.Metro
+    - OpenAPI 두가지 사용
+    - MVVM은 시간부족으로 미적용
+    - 좋아하는 영화 즐겨찾기 앱
+    - [TMDB](https://www.themoviedb.org/) OpenAPI활용
+        - 회원가입 후 API 신청
+    - [Youtube API](https://console.cloud.google.com/) 활용
+        - 새 프로젝트 생성
+        - API 및 서비스, 라이브러리 선택
+        - YouTube 검색 -> YouTube Data API v3 선택 -> 사용버튼 클릭 
+        - 사용자 인증 정보 만들기 버튼 클릭 
+            1. 사용자 데이터 라디오 버튼 클릭 -> 다음
+            2. OAuth 동의화면, 기본내용 입력 후 다음
+            3. 범위는 저장 후 계속
+            4. OAuth 클라이언트 ID에서 애플리케이션 유형을 '데스크톱 앱', 이름 입력 후 만들기 클릭
+
+    - Newtonsoft.Json

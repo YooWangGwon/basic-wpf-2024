@@ -166,16 +166,20 @@
         - Material Design In XAML : http://materialdesigninxaml.net/
 
     - 디자인을 적용한 메인화면
+
     ![메인화면](https://raw.githubusercontent.com/YooWangGwon/basic-wpf-2024/main/images/wpf003.png)
 
+
     - 메트로 다이얼로그
+
     ![다이얼로그](https://raw.githubusercontent.com/YooWangGwon/basic-wpf-2024/main/images/wpf004.png)
 
 - Movie API 연동앱, MovieFinder 2024
     - DB(SQL Server) 연동
     - MahApps.Metro
     - OpenAPI 두가지 사용
-    - MVVM은 시간부족으로 미적용
+    - MVVM 미적용
+    - Newtonsoft.Json
     - 좋아하는 영화 즐겨찾기 앱
     - [TMDB](https://www.themoviedb.org/) OpenAPI활용
         - 회원가입 후 API 신청
@@ -189,4 +193,33 @@
             3. 범위는 저장 후 계속
             4. OAuth 클라이언트 ID에서 애플리케이션 유형을 '데스크톱 앱', 이름 입력 후 만들기 클릭
 
-    - Newtonsoft.Json
+
+## 6일차(24.05.08)
+- MoviewFinder 2024
+    - 패키지 추가
+        - CefSharp.WPF.NETCore : 웹 브라우저를 사용하기 위한 패키지
+        - Google.Apis : Google API를 사용하기 위 한 패키지
+
+    - 기능 구현
+        - 즐겨찾기 보기(SELECT)
+        - 즐겨찾기 추가(INSERT, 2개 이상 추가 가능)
+        - 유튜브 예고편 영상 재생
+
+    - 메인화면
+
+    ![메인화면](https://raw.githubusercontent.com/YooWangGwon/basic-wpf-2024/main/images/wpf005.png)
+    
+
+    - 예고편 화면
+
+    ![예고편화면](https://raw.githubusercontent.com/YooWangGwon/basic-wpf-2024/main/images/wpf005.png)
+
+
+## 7일차
+- MovieFinder 2024 남은 작업
+    - 즐겨찾기 후 다시 선택 즐겨찾기 막아야함
+    - 즐겨찾기 삭제 구현
+    - 그리드뷰 영화를 더블클릭하면 영화소개 팝업
+
+- 데이터포털 API 연동앱 예제
+    - 5월 13일 개인 프로젝트 참조 소스

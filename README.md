@@ -179,7 +179,6 @@
     - MahApps.Metro
     - OpenAPI 두가지 사용
     - MVVM 미적용
-    - Newtonsoft.Json
     - 좋아하는 영화 즐겨찾기 앱
     - [TMDB](https://www.themoviedb.org/) OpenAPI활용
         - 회원가입 후 API 신청
@@ -199,6 +198,7 @@
     - 패키지 추가
         - CefSharp.WPF.NETCore : 웹 브라우저를 사용하기 위한 패키지
         - Google.Apis : Google API를 사용하기 위 한 패키지
+        - Newtonsoft.Json
 
     - 기능 구현
         - 즐겨찾기 보기(SELECT)
@@ -224,10 +224,18 @@
         - 그리드뷰 영화를 더블클릭하면 영화소개 팝업
 
     - 실행화면
- 
 
     https://github.com/YooWangGwon/basic-wpf-2024/assets/158007390/9bbde747-7f70-490f-ba7c-968547ce404f
-    
 
 - 데이터포털 API 연동앱 예제
     - 5월 13일 개인 프로젝트 참조 소스
+    - 공공데이터 포털 김해시 미세먼지 정보 저장 https://www.data.go.kr/data/15086828/openapi.do
+    - 사용 패키지
+        - CefSharp
+        - MahApps.Metro
+        - MahApps.Metro.IconPacks
+        - Microsoft.Data.SqlClient
+    - 기능
+        - '실시간 조회'버튼을 클릭하면 API를 연동하여 김해시 미세먼지 정보를 가져와 DataGrid에 출력
+        - '저장'버튼을 클릭하면 DataGrid에 출력된 데이터들을 DB에 저장
+        - '실시간 조회'버튼을 눌러 조회하고나서 '저장' 버튼을 눌러 저장할 수 있음

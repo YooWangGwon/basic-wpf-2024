@@ -224,6 +224,9 @@
         - 그리드뷰 영화를 더블클릭하면 영화소개 팝업
 
     - 실행화면
+ 
+
+    https://github.com/YooWangGwon/basic-wpf-2024/assets/158007390/9bbde747-7f70-490f-ba7c-968547ce404f
     
 
 - 데이터포털 API 연동앱 예제

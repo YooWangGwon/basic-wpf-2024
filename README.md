@@ -212,14 +212,19 @@
 
     - 예고편 화면
 
-    ![예고편화면](https://raw.githubusercontent.com/YooWangGwon/basic-wpf-2024/main/images/wpf005.png)
+    ![예고편화면](https://raw.githubusercontent.com/YooWangGwon/basic-wpf-2024/main/images/wpf006.png)
 
 
 ## 7일차
-- MovieFinder 2024 남은 작업
-    - 즐겨찾기 후 다시 선택 즐겨찾기 막아야함
-    - 즐겨찾기 삭제 구현
-    - 그리드뷰 영화를 더블클릭하면 영화소개 팝업
+- MovieFinder 2024
+    - 기능 추가
+        - 즐겨찾기 보기 상태에서 즐겨찾기 추가 막기
+        - 검색 상태에서 이미 즐겨찾기 된 영화를 추가하는 것을 막기(CHECK_QUERY 활용)
+        - 즐겨찾기 삭제 구현 -> 삭제하면 새로고침하여 즐겨찾기 리스트를 갱신
+        - 그리드뷰 영화를 더블클릭하면 영화소개 팝업
+
+    - 실행화면
+    
 
 - 데이터포털 API 연동앱 예제
     - 5월 13일 개인 프로젝트 참조 소스

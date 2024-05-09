@@ -29,6 +29,11 @@ namespace ex10_MovieFinder2024.Models
         public DateTime? Reg_Data {  get; set; }    // 최초에는 없기 때문에 Nullable 지정
 
         // 쿼리 파트
+
+        public static readonly string CHECK_QUERY = @"SELECT COUNT(*)
+                                                        FROM MovieItem
+                                                       WHERE Id = @Id";
+
         public static readonly string SELECT_QUERY = @"SELECT [Id]
                                                              ,[Title]
                                                              ,[Original_Title]

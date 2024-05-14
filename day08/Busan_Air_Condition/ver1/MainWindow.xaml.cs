@@ -42,7 +42,7 @@ namespace ver1
 
             string openApiUri = "http://apis.data.go.kr/6260000/AirQualityInfoService/" +
                                 $"getAirQualityInfoClassifiedByStation?serviceKey={encodingKey}&pageNo=1" +
-                                "&numOfRows=21&resultType=json";
+                                "&numOfRows=31&resultType=json";
             string result = string.Empty;
 
             // WebRequest, WebResponse 객체
@@ -102,9 +102,10 @@ namespace ver1
                         });
                     }
 
-                    var sensorData = new ListCollectionView(airSensor);
-                    sensorData.SortDescriptions.Add(new SortDescription("Site", ListSortDirection.Ascending));
-                    this.DataContext = sensorData;
+                    //var sensorData = new ListCollectionView(airSensor);
+                    //sensorData.SortDescriptions.Add(new SortDescription("Site", ListSortDirection.Ascending));
+                    //this.DataContext = sensorData;
+                    this.DataContext = airSensor;
 
                     StsResult.Content = $"OpenAIP {airSensor.Count}건 조회완료!";
                 }
@@ -115,34 +116,76 @@ namespace ver1
             }
         }
 
-        private async void MapDegreeChange(int selectedindex)
+        private async void MapDegreeChange(int indexNum)
         {
+            var siteList = new List<TextBlock>
+            {
+                Gwangbok,
+                Noksan,
+                Daeyeon,
+                Daejeo,
+                Deokcheon,
+                Myeongjang,
+                Choryang,
+                Taejong,
+                Jeonpo,
+                Oncheon,
+                Hakjang,
+                Cheongryong,
+                Jwadong,
+                Jangnim,
+                Yeonsan,
+                Gijang,
+                Yongsu,
+                Sujeong,
+                Boogok,
+                Gwangan,
+                Daeshin,
+                HwaMeong,
+                Jaesong,
+                Myeongji,
+                CheongHack,
+                Hoedong,
+                Deokpo,
+                Gaegeum,
+                Dangni
+            };
 
-            Gwangbok.Text = $"{GrdResult.SelectedItem}";
-            Noksan.Text = $"";
-            Daeyeon.Text = $"";
-            Daejeo.Text = $"";
-            Deokcheon.Text = $"";
-            Myeongjang.Text = $"";
-            Choryang.Text = $"";
-            Taejong.Text = $"";
-            Jeonpo.Text = $"";
-            Oncheon.Text = $"";
-            Hakjang.Text = $"";
-            Cheongryong.Text = $"";
-            Jwadong.Text = $"";
-            Jangnim.Text = $"";
-            Yeonsan.Text = $"";
-            Gijang.Text = $"";
-            Yongsu.Text = $"";
-            Sujeong.Text = $"";
-            Boogok.Text = $"";
-            Gwangan.Text = $"";
-            Daeshin.Text = $"";
+            foreach (AirSensor item in GrdResult.Items)
+            {
+                foreach(TextBlock site in siteList)
+                {
+                    if(string.Equals(item.Site, site.Text, StringComparison.OrdinalIgnoreCase))
+                    {
+                        switch(indexNum)
+                        {
+                            case 0:
+                                site.Text = item.Pm10.ToString();
+                                continue;
+                            case 1:
+                                site.Text = item.Pm25.ToString();
+                                continue;
+                            case 2:
+                                site.Text = item.No2.ToString();
+                                continue;
+                            case 3:
+                                site.Text = item.Co.ToString();
+                                continue;
+                            case 4:
+                                site.Text = item.So2.ToString();
+                                continue;
+                            case 5:
+                                site.Text = item.O3.ToString();
+                                continue;
+                        }
+                    }
+                }
+            }
         }
 
         private void CboIndex_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ResetSite();
             switch (CboIndex.SelectedIndex)
             {
                 case 0:
@@ -153,6 +196,7 @@ namespace ver1
                     Figure.Binding = binding1;
                     Index.Binding = binding2;
                     Type.Content = "미세먼지";
+                    MapDegreeChange(0);
                     return;
 
                 case 1:
@@ -163,6 +207,7 @@ namespace ver1
                     Figure.Binding = binding3;
                     Index.Binding = binding4;
                     Type.Content = "초미세먼지";
+                    MapDegreeChange(1);
                     return;
 
                 case 2:
@@ -173,6 +218,7 @@ namespace ver1
                     Figure.Binding = binding5;
                     Index.Binding = binding6;
                     Type.Content = "이산화질소";
+                    MapDegreeChange(2);
                     return;
 
                 case 3:
@@ -183,6 +229,7 @@ namespace ver1
                     Figure.Binding = binding7;
                     Index.Binding = binding8;
                     Type.Content = "일산화탄소";
+                    MapDegreeChange(3);
                     return;
 
                 case 4:
@@ -193,6 +240,7 @@ namespace ver1
                     Figure.Binding = binding9;
                     Index.Binding = binding10;
                     Type.Content = "이황산가스";
+                    MapDegreeChange(4);
                     return;
 
                 case 5:
@@ -203,10 +251,42 @@ namespace ver1
                     Figure.Binding = binding11;
                     Index.Binding = binding12;
                     Type.Content = "오존";
+                    MapDegreeChange(5);
                     return;
             }
+        }
 
-
+        private void ResetSite()
+        {
+            Gwangbok.Text = "광복동";
+            Noksan.Text = "녹산동";
+            Daeyeon.Text = "대연동";
+            Daejeo.Text = "대저동";
+            Deokcheon.Text = "덕천동";
+            Myeongjang.Text = "명장동";
+            Choryang.Text = "초량동";
+            Taejong.Text = "태종대";
+            Jeonpo.Text = "전포동";
+            Oncheon.Text = "온천동";
+            Hakjang.Text = "학장동";
+            Cheongryong.Text = "청룡동";
+            Jwadong.Text = "좌동";
+            Jangnim.Text = "장림동";
+            Yeonsan.Text = "연산동";
+            Gijang.Text = "기장읍";
+            Yongsu.Text = "용수리";
+            Sujeong.Text = "수정동";
+            Boogok.Text = "부곡동";
+            Gwangan.Text = "광안동";
+            Daeshin.Text = "대신동";
+            HwaMeong.Text = "화명동";
+            Jaesong.Text = "재송동";
+            Myeongji.Text = "명지동";
+            CheongHack.Text = "청학동";
+            Hoedong.Text = "회동동";
+            Deokpo.Text = "덕포동";
+            Gaegeum.Text = "개금동";
+            Dangni.Text = "당리동";
         }
     }
 }

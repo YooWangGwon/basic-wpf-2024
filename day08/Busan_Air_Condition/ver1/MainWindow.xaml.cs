@@ -1,11 +1,8 @@
-﻿using Busan_Air_Condition.Model;
-using ControlzEx.Standard;
-using MahApps.Metro.Controls;
+﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.DirectoryServices;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -18,8 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ver1.Model;
 
-namespace Busan_Air_Condition
+namespace ver1
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -117,16 +115,35 @@ namespace Busan_Air_Condition
             }
         }
 
-        private async void MapDegreeChange()
+        private async void MapDegreeChange(int selectedindex)
         {
 
             Gwangbok.Text = $"{GrdResult.SelectedItem}";
-            
+            Noksan.Text = $"";
+            Daeyeon.Text = $"";
+            Daejeo.Text = $"";
+            Deokcheon.Text = $"";
+            Myeongjang.Text = $"";
+            Choryang.Text = $"";
+            Taejong.Text = $"";
+            Jeonpo.Text = $"";
+            Oncheon.Text = $"";
+            Hakjang.Text = $"";
+            Cheongryong.Text = $"";
+            Jwadong.Text = $"";
+            Jangnim.Text = $"";
+            Yeonsan.Text = $"";
+            Gijang.Text = $"";
+            Yongsu.Text = $"";
+            Sujeong.Text = $"";
+            Boogok.Text = $"";
+            Gwangan.Text = $"";
+            Daeshin.Text = $"";
         }
 
         private void CboIndex_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch(CboIndex.SelectedIndex)
+            switch (CboIndex.SelectedIndex)
             {
                 case 0:
                     Figure.Header = "미세먼지((PM-10))";
@@ -146,7 +163,6 @@ namespace Busan_Air_Condition
                     Figure.Binding = binding3;
                     Index.Binding = binding4;
                     Type.Content = "초미세먼지";
-                    MapManipulation();
                     return;
 
                 case 2:

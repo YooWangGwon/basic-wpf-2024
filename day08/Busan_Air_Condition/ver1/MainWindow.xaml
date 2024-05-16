@@ -4,10 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:iconPack="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:ver1"
         mc:Ignorable="d"
-        Title="Busan_Air_Condition" Height="450" Width="850" FontFamily="NanumGothic"
+        Title="Busan_Air_Condition" Height="550" Width="850" FontFamily="NanumGothic"
                  Loaded="MetroWindow_Loaded" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -21,45 +21,50 @@
         <!-- 최상단 제목 영역 -->
         <Grid Grid.Row="0" Grid.Column="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="380"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal">
-                <Label Content="부산광역시 대기 정보 - " VerticalAlignment="Center" Margin="0"
+                <Label Content="부산광역시 대기 정보 - " VerticalAlignment="Center" Margin="10,0,0,0"
                        FontSize="20" FontWeight="Bold"/>
                 <Label Content="미세먼지" VerticalAlignment="Center"
                        FontSize="20" FontWeight="Bold" x:Name="Type"/>
             </StackPanel>
-            <DataGrid x:Name="StatusGrid"  Grid.Column="1" Margin="5" HorizontalAlignment="Center" IsReadOnly="true">
-                <DataGrid.CellStyle>
-                    <Style TargetType="DataGridCell">
-                        <Setter Property="TextBlock.TextAlignment" Value="Center"/>
-                    </Style>
-                    <!--<Style TargetType="DataGridColumnHeader">
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                    </Style>-->
-                </DataGrid.CellStyle>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="좋음" Width="1*" />
-                    <DataGridTextColumn Header="보통" Width="1*"/>
-                    <DataGridTextColumn Header="나쁨" Width="1*"/>
-                    <DataGridTextColumn Header="매우나쁨" Width="1*"/>
-                </DataGrid.Columns>  
-            </DataGrid>
-            <ComboBox x:Name="CboIndex" Width="150" Margin="10" HorizontalAlignment="Right"
+            <TextBlock x:Name="TxbCurrDateTime" HorizontalAlignment="Center" Margin="5,0,0,10" Grid.Column="1" VerticalAlignment="Bottom" 
+                       FontFamily="NanuGothic" FontSize="15" FontWeight="SemiBold"/>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1.15*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="BtnF5" Content="새로고침" Margin="10" FontSize="13" FontFamily="NanumGothic"
+                        Click="BtnF5_Click">
+                    <Button.ContentTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <iconPacks:PackIconForkAwesome Kind="Repeat" Margin="5"/>
+                                <TextBlock Text="{Binding}" Margin="5"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </Button.ContentTemplate>
+                </Button>
+                <ComboBox x:Name="CboIndex" Margin="10" HorizontalAlignment="Right"
                       Grid.Column="2" Style="{StaticResource MahApps.Styles.ComboBox}"
                       mah:TextBoxHelper.Watermark="원하는 항목 선택"
                       mah:TextBoxHelper.UseFloatingWatermark="True"
                       mah:TextBoxHelper.ClearTextButton="True"
                       SelectionChanged="CboIndex_SelectionChanged">
-                <TextBlock Text="미세먼지"/>
-                <TextBlock Text="초미세먼지"/>
-                <TextBlock Text="이산화질소"/>
-                <TextBlock Text="일산화탄소"/>
-                <TextBlock Text="이황산가스"/>
-                <TextBlock Text="오존"/>
-            </ComboBox>
+                    <TextBlock Text="미세먼지"/>
+                    <TextBlock Text="초미세먼지"/>
+                    <TextBlock Text="이산화질소"/>
+                    <TextBlock Text="일산화탄소"/>
+                    <TextBlock Text="이황산가스"/>
+                    <TextBlock Text="오존"/>
+                </ComboBox>
+
+            </Grid>
+
         </Grid>
 
         <!-- 지도 및 데이터그리드 영역 -->
@@ -68,9 +73,13 @@
                 <ColumnDefinition Width="500"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height ="100"/>
+            </Grid.RowDefinitions>
             <Image Grid.Column="0"  Source ="/BusanMap.png" Margin="10"/>
 
-            <DataGrid x:Name="GrdResult" Grid.Column="1" Margin="10"
+            <DataGrid x:Name="GrdResult" Grid.Column="1" Grid.RowSpan="2" Margin="10"
                       IsReadOnly="True" ItemsSource="{Binding}"
                       Style="{StaticResource MahApps.Styles.DataGrid.Azure}"
                       AutoGenerateColumns="False">
@@ -102,11 +111,11 @@
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="청룡동"/>
             <TextBlock x:Name="Jwadong" HorizontalAlignment="Left" Margin="327,199,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="좌동"/>
-            <TextBlock x:Name="Jangnim" HorizontalAlignment="Left" Margin="161,287,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Jangnim" HorizontalAlignment="Left" Margin="172,290,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="장림동"/>
             <TextBlock x:Name="Daejeo" HorizontalAlignment="Left" Margin="155,172,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="대저동"/>
-            <TextBlock x:Name="Noksan" HorizontalAlignment="Left" Margin="124,256,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Noksan" HorizontalAlignment="Left" Margin="124,245,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="녹산동"/>
             <TextBlock x:Name="Yeonsan" HorizontalAlignment="Left" Margin="269,198,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="연산동"/>
@@ -122,7 +131,7 @@
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="광안동"/>
             <TextBlock x:Name="Daeshin" HorizontalAlignment="Left" Margin="190,255,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="대신동"/>
-            <TextBlock x:Name="Myeongji" HorizontalAlignment="Left" Margin="113,277,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Myeongji" HorizontalAlignment="Left" Margin="113,266,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="명지동"/>
             <TextBlock x:Name="Jaesong" HorizontalAlignment="Left" Margin="298,188,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="재송동"/>
@@ -136,13 +145,76 @@
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="덕포동"/>
             <TextBlock x:Name="Gaegeum" HorizontalAlignment="Left" Margin="215,208,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="개금동"/>
-            <TextBlock x:Name="Dangni" HorizontalAlignment="Left" Margin="158,266,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Dangni" HorizontalAlignment="Left" Margin="169,269,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="당리동"/>
+            <DataGrid x:Name="GrdStatus"  Grid.Row="2" Margin="10" HorizontalAlignment="Center" IsReadOnly="true"
+                      ItemsSource="{Binding}" AutoGenerateColumns="False" RowHeight="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <!--Style="{StaticResource MahApps.Styles.DataGrid.Azure}"-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="좋음" Width="1*" Binding="{Binding GoodDegree}" FontSize="15">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <!--<Setter Property="Background" Value="#FFD2F4FF"/>-->
+                                <Setter Property="TextAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="보통" Width="1*" Binding="{Binding NormalDegree}" FontSize="15">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <!--<Setter Property="Background" Value="#FFC8FFB0"/>-->
+                                <Setter Property="TextAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="나쁨" Width="1*" Binding="{Binding BadDegree}" FontSize="15">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <!--<Setter Property="Background" Value="#FFDEDA7A"/>-->
+                                <Setter Property="TextAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="매우나쁨" Width="1*" Binding="{Binding VeryBadDegree}" FontSize="15">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <!--<Setter Property="Background" Value="#FFEC9D9D"/>-->
+                                <Setter Property="TextAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style TargetType="GridViewColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                    <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Column.DisplayIndex}" Value="0">
+                                <Setter Property="Background" Value="#FFD2F4FF"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Column.DisplayIndex}" Value="1">
+                                <Setter Property="Background" Value="#FFC8FFB0"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Column.DisplayIndex}" Value="2">
+                                <Setter Property="Background" Value="#FFDEDA7A"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Column.DisplayIndex}" Value="3">
+                                <Setter Property="Background" Value="#FFEC9D9D"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources>
 
+            </DataGrid>
         </Grid>
 
         <!-- 맨 하단 상태바 -->
-        <StatusBar Grid.Row="2" FontSize="10">
+        <StatusBar Grid.Row="3" FontSize="10">
             <StatusBarItem Content="부산 대기 정보 앱" Foreground="Black"/>
             <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" Background="Black" />
             <StatusBarItem x:Name="StsResult" Foreground="Black"/>

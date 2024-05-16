@@ -1,6 +1,7 @@
 ﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Newtonsoft.Json.Linq;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using ver1.Model;
 
 namespace ver1
@@ -27,11 +29,23 @@ namespace ver1
         public MainWindow()
         {
             InitializeComponent();
+
+            var timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1); // 1초마다 업데이트
+            timer.Tick += Timer_Tick;
+            timer.Start(); // 타이머 시작
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            TxbCurrDateTime.Text = DateTime.Now.ToString(); // 현재 시간 업데이트
         }
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
             GetAirInfo();
+            GrdStatusChange(0);
+            MapDegreeChange(0);
         }
 
         private async void GetAirInfo()
@@ -116,7 +130,7 @@ namespace ver1
             }
         }
 
-        private async void MapDegreeChange(int indexNum)
+        private void MapDegreeChange(int indexNum)
         {
             var siteList = new List<TextBlock>
             {
@@ -197,6 +211,7 @@ namespace ver1
                     Index.Binding = binding2;
                     Type.Content = "미세먼지";
                     MapDegreeChange(0);
+                    GrdStatusChange(0);
                     return;
 
                 case 1:
@@ -208,6 +223,7 @@ namespace ver1
                     Index.Binding = binding4;
                     Type.Content = "초미세먼지";
                     MapDegreeChange(1);
+                    GrdStatusChange(1);
                     return;
 
                 case 2:
@@ -219,6 +235,7 @@ namespace ver1
                     Index.Binding = binding6;
                     Type.Content = "이산화질소";
                     MapDegreeChange(2);
+                    GrdStatusChange(2);
                     return;
 
                 case 3:
@@ -230,6 +247,7 @@ namespace ver1
                     Index.Binding = binding8;
                     Type.Content = "일산화탄소";
                     MapDegreeChange(3);
+                    GrdStatusChange(3);
                     return;
 
                 case 4:
@@ -241,6 +259,7 @@ namespace ver1
                     Index.Binding = binding10;
                     Type.Content = "이황산가스";
                     MapDegreeChange(4);
+                    GrdStatusChange(4);
                     return;
 
                 case 5:
@@ -252,6 +271,7 @@ namespace ver1
                     Index.Binding = binding12;
                     Type.Content = "오존";
                     MapDegreeChange(5);
+                    GrdStatusChange(5);
                     return;
             }
         }
@@ -287,6 +307,51 @@ namespace ver1
             Deokpo.Text = "덕포동";
             Gaegeum.Text = "개금동";
             Dangni.Text = "당리동";
+        }
+
+        private void GrdStatusChange(int indexNum)
+        {
+            switch(indexNum)
+            {
+                case 0:
+                    var pm10Status = new List<AirStatus>();
+                    pm10Status.Add(new AirStatus() { GoodDegree = "0~30", NormalDegree = "31 ~ 80", BadDegree = "81 ~ 150", VeryBadDegree = "151 이상" });
+                    GrdStatus.ItemsSource = pm10Status;
+                    return;
+
+                case 1:
+                    var pm25Status = new List<AirStatus>();
+                    pm25Status.Add(new AirStatus() { GoodDegree = "0~15", NormalDegree = "16 ~ 35", BadDegree = "36 ~ 75", VeryBadDegree = "76 이상" });
+                    GrdStatus.ItemsSource = pm25Status;
+                    return;
+
+                case 2:
+                    var no2Status = new List<AirStatus>();
+                    no2Status.Add(new AirStatus() { GoodDegree = "0~0.030", NormalDegree = "0.031 ~ 0.060", BadDegree = "0.061 ~ 0.200", VeryBadDegree = "0.201 이상" });
+                    GrdStatus.ItemsSource = no2Status;
+                    return;
+
+                case 3:
+                    var coStatus = new List<AirStatus>();
+                    coStatus.Add(new AirStatus() { GoodDegree = "0~2.00", NormalDegree = "2.01 ~ 9.00", BadDegree = "9.01 ~ 15.00", VeryBadDegree = "15.01 이상" });
+                    GrdStatus.ItemsSource = coStatus;
+                    return;
+                case 4:
+                    var so2Status = new List<AirStatus>();
+                    so2Status.Add(new AirStatus() { GoodDegree = "0~0.020", NormalDegree = "0.021 ~ 0.050", BadDegree = "0.051 ~ 0.150", VeryBadDegree = "0.151 이상 이상" });
+                    GrdStatus.ItemsSource = so2Status;
+                    return;
+                case 5:
+                    var o3Status = new List<AirStatus>();
+                    o3Status.Add(new AirStatus() { GoodDegree = "0~0.030", NormalDegree = "0.031 ~ 0.090", BadDegree = "0.091 ~ 0.150", VeryBadDegree = "0.151 이상" });
+                    GrdStatus.ItemsSource = o3Status;
+                    return;
+            }
+        }
+
+        private void BtnF5_Click(object sender, RoutedEventArgs e)
+        {
+            GetAirInfo();
         }
     }
 }

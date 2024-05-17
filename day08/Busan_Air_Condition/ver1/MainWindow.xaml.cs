@@ -36,24 +36,121 @@ namespace ver1
             timer.Start(); // 타이머 시작
         }
 
+        #region "이벤트 핸들러 영역"
         private void Timer_Tick(object sender, EventArgs e)
         {
-            TxbCurrDateTime.Text = DateTime.Now.ToString(); // 현재 시간 업데이트
+            StsCurrTime.Content = DateTime.Now.ToString(); // 현재 시간 업데이트
         }
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            ResetSite();
             GetAirInfo();
             GrdStatusChange(0);
-            MapDegreeChange(0);
         }
 
+        private void BtnF5_Click(object sender, RoutedEventArgs e)
+        {
+            ResetSite();
+            this.DataContext = null;
+            StsResult.Content = "새로고침 버튼 클릭";
+            GetAirInfo();
+        }
+        
+        private void CboIndex_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ResetSite();
+            switch (CboIndex.SelectedIndex)
+            {
+                case 0:
+                    Figure.Header = "미세먼지((PM-10))";
+                    Index.Header = "미세먼지 지수";
+                    var binding1 = new Binding("Pm10");
+                    var binding2 = new Binding("Pm10Cai");
+                    Figure.Binding = binding1;
+                    Index.Binding = binding2;
+                    Type.Content = "미세먼지";
+                    StsResult.Content = "미세먼지 항목 선택";
+                    MapDegreeChange(0);
+                    GrdStatusChange(0);
+                    return;
+
+                case 1:
+                    Figure.Header = "초미세먼지(PM-2.5)";
+                    Index.Header = "초미세먼지 지수";
+                    var binding3 = new Binding("Pm25");
+                    var binding4 = new Binding("Pm25Cai");
+                    Figure.Binding = binding3;
+                    Index.Binding = binding4;
+                    Type.Content = "초미세먼지";
+                    StsResult.Content = "초미세먼지 항목 선택";
+                    MapDegreeChange(1);
+                    GrdStatusChange(1);
+                    return;
+
+                case 2:
+                    Figure.Header = "이산화질소(NO2)";
+                    Index.Header = "이산화질소 지수";
+                    var binding5 = new Binding("No2");
+                    var binding6 = new Binding("No2Cai");
+                    Figure.Binding = binding5;
+                    Index.Binding = binding6;
+                    Type.Content = "이산화질소";
+                    StsResult.Content = "이산화질소 항목 선택";
+                    MapDegreeChange(2);
+                    GrdStatusChange(2);
+                    return;
+
+                case 3:
+                    Figure.Header = "일산화탄소(CO)";
+                    Index.Header = "일산화탄소 지수";
+                    var binding7 = new Binding("Co");
+                    var binding8 = new Binding("CoCai");
+                    Figure.Binding = binding7;
+                    Index.Binding = binding8;
+                    Type.Content = "일산화탄소";
+                    StsResult.Content = "일산화탄소 항목 선택";
+                    MapDegreeChange(3);
+                    GrdStatusChange(3);
+                    return;
+
+                case 4:
+                    Figure.Header = "이황산가스(SO2)";
+                    Index.Header = "이황산가스 지수";
+                    var binding9 = new Binding("So2");
+                    var binding10 = new Binding("So2Cai");
+                    Figure.Binding = binding9;
+                    Index.Binding = binding10;
+                    Type.Content = "이황산가스";
+                    StsResult.Content = "이황산가스 항목 선택";
+                    MapDegreeChange(4);
+                    GrdStatusChange(4);
+                    return;
+
+                case 5:
+                    Figure.Header = "오존(O3)";
+                    Index.Header = "오존 지수";
+                    var binding11 = new Binding("O3");
+                    var binding12 = new Binding("O3Cai");
+                    Figure.Binding = binding11;
+                    Index.Binding = binding12;
+                    Type.Content = "오존";
+                    StsResult.Content = "오존 항목 선택";
+                    MapDegreeChange(5);
+                    GrdStatusChange(5);
+                    return;
+            }
+        }
+        #endregion
+
+        #region "함수 영역"
         private async void GetAirInfo()
         {
             string encodingKey = "HOkDfo8ke5g4hoc9JTcZh2xTTnBZ2a1woU250HmKXH1kEKsDJrPU0kG8pj2sJA9%2Bo%2B8mMCdnk%2BRExaRf%2FAC%2BeA%3D%3D";
 
             //string decodingKey = "HOkDfo8ke5g4hoc9JTcZh2xTTnBZ2a1woU250HmKXH1kEKsDJrPU0kG8pj2sJA9+o+8mMCdnk+RExaRf/AC+eA==";
 
+            // string openApiUri = "http://apis.data.go.kr/6260000/AirQualityInfoService/getAirQualityInfoClassifiedByStation?serviceKey=HOkDfo8ke5g4hoc9JTcZh2xTTnBZ2a1woU250HmKXH1kEKsDJrPU0kG8pj2sJA9%2Bo%2B8mMCdnk%2BRExaRf%2FAC%2BeA%3D%3D&pageNo=1&numOfRows=31&resultType=json
             string openApiUri = "http://apis.data.go.kr/6260000/AirQualityInfoService/" +
                                 $"getAirQualityInfoClassifiedByStation?serviceKey={encodingKey}&pageNo=1" +
                                 "&numOfRows=31&resultType=json";
@@ -122,6 +219,14 @@ namespace ver1
                     this.DataContext = airSensor;
 
                     StsResult.Content = $"OpenAIP {airSensor.Count}건 조회완료!";
+                }
+                if(CboIndex.SelectedIndex < 0)
+                {
+                    MapDegreeChange(0);
+                }
+                else
+                {
+                    MapDegreeChange(CboIndex.SelectedIndex);
                 }
             }
             catch (Exception ex)
@@ -195,84 +300,9 @@ namespace ver1
                     }
                 }
             }
-        }
-
-        private void CboIndex_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ResetSite();
-            switch (CboIndex.SelectedIndex)
+            foreach (TextBlock site in siteList)
             {
-                case 0:
-                    Figure.Header = "미세먼지((PM-10))";
-                    Index.Header = "미세먼지 지수";
-                    var binding1 = new Binding("Pm10");
-                    var binding2 = new Binding("Pm10Cai");
-                    Figure.Binding = binding1;
-                    Index.Binding = binding2;
-                    Type.Content = "미세먼지";
-                    MapDegreeChange(0);
-                    GrdStatusChange(0);
-                    return;
-
-                case 1:
-                    Figure.Header = "초미세먼지(PM-2.5)";
-                    Index.Header = "초미세먼지 지수";
-                    var binding3 = new Binding("Pm25");
-                    var binding4 = new Binding("Pm25Cai");
-                    Figure.Binding = binding3;
-                    Index.Binding = binding4;
-                    Type.Content = "초미세먼지";
-                    MapDegreeChange(1);
-                    GrdStatusChange(1);
-                    return;
-
-                case 2:
-                    Figure.Header = "이산화질소(NO2)";
-                    Index.Header = "이산화질소 지수";
-                    var binding5 = new Binding("No2");
-                    var binding6 = new Binding("No2Cai");
-                    Figure.Binding = binding5;
-                    Index.Binding = binding6;
-                    Type.Content = "이산화질소";
-                    MapDegreeChange(2);
-                    GrdStatusChange(2);
-                    return;
-
-                case 3:
-                    Figure.Header = "일산화탄소(CO)";
-                    Index.Header = "일산화탄소 지수";
-                    var binding7 = new Binding("Co");
-                    var binding8 = new Binding("CoCai");
-                    Figure.Binding = binding7;
-                    Index.Binding = binding8;
-                    Type.Content = "일산화탄소";
-                    MapDegreeChange(3);
-                    GrdStatusChange(3);
-                    return;
-
-                case 4:
-                    Figure.Header = "이황산가스(SO2)";
-                    Index.Header = "이황산가스 지수";
-                    var binding9 = new Binding("So2");
-                    var binding10 = new Binding("So2Cai");
-                    Figure.Binding = binding9;
-                    Index.Binding = binding10;
-                    Type.Content = "이황산가스";
-                    MapDegreeChange(4);
-                    GrdStatusChange(4);
-                    return;
-
-                case 5:
-                    Figure.Header = "오존(O3)";
-                    Index.Header = "오존 지수";
-                    var binding11 = new Binding("O3");
-                    var binding12 = new Binding("O3Cai");
-                    Figure.Binding = binding11;
-                    Index.Binding = binding12;
-                    Type.Content = "오존";
-                    MapDegreeChange(5);
-                    GrdStatusChange(5);
-                    return;
+                site.Visibility = Visibility.Visible;
             }
         }
 
@@ -307,6 +337,44 @@ namespace ver1
             Deokpo.Text = "덕포동";
             Gaegeum.Text = "개금동";
             Dangni.Text = "당리동";
+
+            var siteList = new List<TextBlock>
+            {
+                Gwangbok,
+                Noksan,
+                Daeyeon,
+                Daejeo,
+                Deokcheon,
+                Myeongjang,
+                Choryang,
+                Taejong,
+                Jeonpo,
+                Oncheon,
+                Hakjang,
+                Cheongryong,
+                Jwadong,
+                Jangnim,
+                Yeonsan,
+                Gijang,
+                Yongsu,
+                Sujeong,
+                Boogok,
+                Gwangan,
+                Daeshin,
+                HwaMeong,
+                Jaesong,
+                Myeongji,
+                CheongHack,
+                Hoedong,
+                Deokpo,
+                Gaegeum,
+                Dangni
+            };
+
+            foreach(TextBlock site in siteList)
+            {
+                site.Visibility = Visibility.Hidden;
+            }
         }
 
         private void GrdStatusChange(int indexNum)
@@ -348,10 +416,6 @@ namespace ver1
                     return;
             }
         }
-
-        private void BtnF5_Click(object sender, RoutedEventArgs e)
-        {
-            GetAirInfo();
-        }
+        #endregion
     }
 }

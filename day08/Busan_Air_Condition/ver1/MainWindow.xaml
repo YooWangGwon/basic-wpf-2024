@@ -9,6 +9,11 @@
         mc:Ignorable="d"
         Title="Busan_Air_Condition" Height="550" Width="850" FontFamily="NanumGothic"
                  Loaded="MetroWindow_Loaded" ResizeMode="NoResize">
+    <mah:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <iconPacks:PackIconWeatherIcons Kind="Dust" Margin="5,7,0,0" Foreground="White"/>
+        </DataTemplate>
+    </mah:MetroWindow.IconTemplate>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -31,14 +36,14 @@
                 <Label Content="미세먼지" VerticalAlignment="Center"
                        FontSize="20" FontWeight="Bold" x:Name="Type"/>
             </StackPanel>
-            <TextBlock x:Name="TxbCurrDateTime" HorizontalAlignment="Center" Margin="5,0,0,10" Grid.Column="1" VerticalAlignment="Bottom" 
-                       FontFamily="NanuGothic" FontSize="15" FontWeight="SemiBold"/>
+            <!--<TextBlock x:Name="TxbCurrDateTime" HorizontalAlignment="Center" Margin="5,0,0,10" Grid.Column="1" VerticalAlignment="Bottom" 
+                       FontFamily="NanuGothic" FontSize="15" FontWeight="SemiBold"/>-->
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1.15*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="BtnF5" Content="새로고침" Margin="10" FontSize="13" FontFamily="NanumGothic"
+                <Button x:Name="BtnF5" Content="새로고침" Margin="10,10,0,10" FontSize="13" FontFamily="NanumGothic"
                         Click="BtnF5_Click">
                     <Button.ContentTemplate>
                         <DataTemplate>
@@ -89,69 +94,69 @@
                     <DataGridTextColumn x:Name="Index" Binding="{Binding Pm10Cai, StringFormat={}{0:0.0}}" Header="미세먼지 지수" Width="120"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <TextBlock x:Name="Gwangbok" HorizontalAlignment="Left" Margin="226,267,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Gwangbok" HorizontalAlignment="Left" Margin="228,263,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="광복동"/>
-            <TextBlock x:Name="Choryang" HorizontalAlignment="Center" Margin="0,246,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Choryang" HorizontalAlignment="Center" Margin="0,242,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="초량동"/>
-            <TextBlock x:Name="Taejong" HorizontalAlignment="Left" Margin="252,298,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Taejong" HorizontalAlignment="Left" Margin="254,294,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="태종대"/>
-            <TextBlock x:Name="Jeonpo" HorizontalAlignment="Left" Margin="252,228,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Jeonpo" HorizontalAlignment="Left" Margin="254,224,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="전포동"/>
-            <TextBlock x:Name="Oncheon" HorizontalAlignment="Left" Margin="236,0,0,0" TextWrapping="Wrap"
-                       FontWeight="DemiBold" FontSize="12" VerticalAlignment="Center" Text="온천동"/>
-            <TextBlock x:Name="Myeongjang" HorizontalAlignment="Left" Margin="274,176,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Oncheon" HorizontalAlignment="Left" Margin="238,166,0,0" TextWrapping="Wrap"
+                       FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="온천동"/>
+            <TextBlock x:Name="Myeongjang" HorizontalAlignment="Left" Margin="276,172,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="명장동"/>
-            <TextBlock x:Name="Daeyeon" HorizontalAlignment="Left" Margin="276,243,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Daeyeon" HorizontalAlignment="Left" Margin="278,239,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="대연동"/>
-            <TextBlock x:Name="Hakjang" HorizontalAlignment="Left" Margin="162,237,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Hakjang" HorizontalAlignment="Left" Margin="164,233,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="학장동"/>
-            <TextBlock x:Name="Deokcheon" HorizontalAlignment="Left" Margin="197,173,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Deokcheon" HorizontalAlignment="Left" Margin="199,168,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="덕천동"/>
-            <TextBlock x:Name="Cheongryong" HorizontalAlignment="Left" Margin="247,113,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Cheongryong" HorizontalAlignment="Left" Margin="249,109,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="청룡동"/>
-            <TextBlock x:Name="Jwadong" HorizontalAlignment="Left" Margin="327,199,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Jwadong" HorizontalAlignment="Left" Margin="329,195,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="좌동"/>
-            <TextBlock x:Name="Jangnim" HorizontalAlignment="Left" Margin="172,290,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Jangnim" HorizontalAlignment="Left" Margin="174,286,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="장림동"/>
-            <TextBlock x:Name="Daejeo" HorizontalAlignment="Left" Margin="155,172,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Daejeo" HorizontalAlignment="Left" Margin="157,167,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="대저동"/>
-            <TextBlock x:Name="Noksan" HorizontalAlignment="Left" Margin="124,245,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Noksan" HorizontalAlignment="Left" Margin="126,241,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="녹산동"/>
-            <TextBlock x:Name="Yeonsan" HorizontalAlignment="Left" Margin="269,198,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Yeonsan" HorizontalAlignment="Left" Margin="271,194,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="연산동"/>
-            <TextBlock x:Name="Gijang" HorizontalAlignment="Left" Margin="365,163,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Gijang" HorizontalAlignment="Left" Margin="367,159,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="기장읍"/>
-            <TextBlock x:Name="Yongsu" HorizontalAlignment="Left" Margin="334,52,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Yongsu" HorizontalAlignment="Left" Margin="336,48,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="용수리"/>
-            <TextBlock x:Name="Sujeong" HorizontalAlignment="Left" Margin="215,230,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Sujeong" HorizontalAlignment="Left" Margin="217,226,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="수정동"/>
-            <TextBlock x:Name="Boogok" HorizontalAlignment="Left" Margin="268,146,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Boogok" HorizontalAlignment="Left" Margin="270,142,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="부곡동"/>
-            <TextBlock x:Name="Gwangan" HorizontalAlignment="Left" Margin="292,220,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Gwangan" HorizontalAlignment="Left" Margin="294,216,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="광안동"/>
-            <TextBlock x:Name="Daeshin" HorizontalAlignment="Left" Margin="190,255,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Daeshin" HorizontalAlignment="Left" Margin="192,251,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="대신동"/>
-            <TextBlock x:Name="Myeongji" HorizontalAlignment="Left" Margin="113,266,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Myeongji" HorizontalAlignment="Left" Margin="115,262,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="명지동"/>
-            <TextBlock x:Name="Jaesong" HorizontalAlignment="Left" Margin="298,188,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Jaesong" HorizontalAlignment="Left" Margin="300,184,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="재송동"/>
-            <TextBlock x:Name="CheongHack" HorizontalAlignment="Center" Margin="0,282,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="CheongHack" HorizontalAlignment="Center" Margin="0,278,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="청학동"/>
-            <TextBlock x:Name="HwaMeong" HorizontalAlignment="Left" Margin="166,200,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="HwaMeong" HorizontalAlignment="Left" Margin="168,196,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="화명동"/>
-            <TextBlock x:Name="Hoedong" HorizontalAlignment="Left" Margin="304,140,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Hoedong" HorizontalAlignment="Left" Margin="306,136,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="회동동"/>
-            <TextBlock x:Name="Deokpo" HorizontalAlignment="Left" Margin="185,218,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Deokpo" HorizontalAlignment="Left" Margin="187,214,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="덕포동"/>
-            <TextBlock x:Name="Gaegeum" HorizontalAlignment="Left" Margin="215,208,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Gaegeum" HorizontalAlignment="Left" Margin="217,204,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="개금동"/>
-            <TextBlock x:Name="Dangni" HorizontalAlignment="Left" Margin="169,269,0,0" TextWrapping="Wrap"
+            <TextBlock x:Name="Dangni" HorizontalAlignment="Left" Margin="171,265,0,0" TextWrapping="Wrap"
                        FontWeight="DemiBold" FontSize="12" VerticalAlignment="Top" Text="당리동"/>
             <DataGrid x:Name="GrdStatus"  Grid.Row="2" Margin="10" HorizontalAlignment="Center" IsReadOnly="true"
                       ItemsSource="{Binding}" AutoGenerateColumns="False" RowHeight="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
                 <!--Style="{StaticResource MahApps.Styles.DataGrid.Azure}"-->
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="좋음" Width="1*" Binding="{Binding GoodDegree}" FontSize="15">
+                    <DataGridTextColumn Header="좋음" Width="1*" Binding="{Binding GoodDegree}" FontSize="15" FontWeight="SemiBold">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <!--<Setter Property="Background" Value="#FFD2F4FF"/>-->
@@ -160,7 +165,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="보통" Width="1*" Binding="{Binding NormalDegree}" FontSize="15">
+                    <DataGridTextColumn Header="보통" Width="1*" Binding="{Binding NormalDegree}" FontSize="15" FontWeight="SemiBold">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <!--<Setter Property="Background" Value="#FFC8FFB0"/>-->
@@ -169,7 +174,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="나쁨" Width="1*" Binding="{Binding BadDegree}" FontSize="15">
+                    <DataGridTextColumn Header="나쁨" Width="1*" Binding="{Binding BadDegree}" FontSize="15" FontWeight="SemiBold">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <!--<Setter Property="Background" Value="#FFDEDA7A"/>-->
@@ -178,7 +183,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="매우나쁨" Width="1*" Binding="{Binding VeryBadDegree}" FontSize="15">
+                    <DataGridTextColumn Header="매우나쁨" Width="1*" Binding="{Binding VeryBadDegree}" FontSize="15" FontWeight="SemiBold">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}">
                                 <!--<Setter Property="Background" Value="#FFEC9D9D"/>-->
@@ -218,6 +223,10 @@
             <StatusBarItem Content="부산 대기 정보 앱" Foreground="Black"/>
             <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" Background="Black" />
             <StatusBarItem x:Name="StsResult" Foreground="Black"/>
+            <StatusBarItem x:Name="StsCurrTime" HorizontalAlignment="Right"
+                       FontFamily="NanuGothic" FontSize="15" FontWeight="SemiBold"/>
+            <!--<TextBlock x:Name="TxbCurrDateTime" HorizontalAlignment="Center" Margin="5,0,0,10" Grid.Column="1" VerticalAlignment="Bottom" 
+                       FontFamily="NanuGothic" FontSize="15" FontWeight="SemiBold"/>-->
         </StatusBar>
     </Grid>
 </mah:MetroWindow>

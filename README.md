@@ -215,7 +215,7 @@
     ![예고편화면](https://raw.githubusercontent.com/YooWangGwon/basic-wpf-2024/main/images/wpf006.png)
 
 
-## 7일차
+## 7일차(24.05.09)
 - MovieFinder 2024
     - 기능 추가
         - 즐겨찾기 보기 상태에서 즐겨찾기 추가 막기
@@ -239,3 +239,26 @@
         - '실시간 조회'버튼을 클릭하면 API를 연동하여 김해시 미세먼지 정보를 가져와 DataGrid에 출력
         - '저장'버튼을 클릭하면 DataGrid에 출력된 데이터들을 DB에 저장
         - '실시간 조회'버튼을 눌러 조회하고나서 '저장' 버튼을 눌러 저장할 수 있음
+
+## 8일차(24.05.13)
+- 개인 ToyProject(부산광역시 지역별 대기 정보 조회 프로그램)
+    - 공공데이터 포털 Open API : 부산광역시_대기질 정보 조회(https://www.data.go.kr/iim/api/selectAPIAcountView.do)
+    - 사용 패키지
+        - MahApps.Metro(2.4.10)
+        - MahApps.Metro.IconPacks(4.11.0)
+        - Newtonsoft.Json(13.0.3)
+
+    - 메인 화면
+
+    ![메인화면](https://raw.githubusercontent.com/YooWangGwon/basic-wpf-2024/main/images/wpf008.png)
+    
+    
+    - 작동 프로세스
+        1. 메인화면 로드 : 메인화면 로드와 동시에 발급받은 인증키를 이용해 API통해서 최신의 부산광역시 대기질 정보를 조회
+        2. 조회가 성공적으로 수행된 경우, 지역별 미세먼지(Pm10) 측정값에 대한 정보가 우측 DataGrid에 출력되고 지도 밑 DataGrid에는 해당 측정값별 위험수준을 표시, 지도에는 지역별 수치가 나타남
+        3. 콤보박스 항목 선택 : 우측상단 콤보박스에서 원하는 항목을 선택하면 해당 항목에대한 정보가 지도와 우측 DataGrid에 출력됨
+        4. 새로고침 버튼 클릭 : 기존의 값들이 제거되고 API를 통해 다시 정보를 조회하여 가져옴
+
+    - 실행 화면
+        
+        

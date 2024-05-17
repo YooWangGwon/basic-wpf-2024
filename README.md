@@ -263,9 +263,7 @@
         - 우측 하단 상태바에서 실시간 시간을 초단위로 출력
 
     - 실행 화면
-<<<<<<< HEAD
-        
-=======
 
-    https://github.com/YooWangGwon/basic-wpf-2024/assets/158007390/84a8f7c5-e56b-4b28-b679-82c6f26ee123
->>>>>>> 753ec13ea997570549e1038ced2b23dc6210d372
+    https://github.com/YooWangGwon/basic-wpf-2024/assets/158007390/9acfb65e-de7b-439f-9e11-2049b6a0ebe9
+
+

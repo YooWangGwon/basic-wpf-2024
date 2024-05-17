@@ -260,5 +260,5 @@
         4. 새로고침 버튼 클릭 : 기존의 값들이 제거되고 API를 통해 다시 정보를 조회하여 가져옴
 
     - 실행 화면
-        
-        
+
+    https://github.com/YooWangGwon/basic-wpf-2024/assets/158007390/84a8f7c5-e56b-4b28-b679-82c6f26ee123

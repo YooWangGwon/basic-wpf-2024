@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ver2.Views;
 
 namespace ver2
 {
@@ -20,6 +21,27 @@ namespace ver2
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void BtnAllAir_Click(object sender, RoutedEventArgs e)
+        {
+            ActiveItem.Content = new AllAir();
+            LblStatus.Content = "전체 대기 상태";
+            StsResult.Content = "전체 대기 상태";
+        }
+
+        private void BtnRegionAir_Click(object sender, RoutedEventArgs e)
+        {
+            ActiveItem.Content = new RegionAir();
+            StsResult.Content = "지역별 대기 상태";
+            StsResult.Content = "지역별 대기 상태";
+        }
+
+        private void BtnDataInquiry_Click(object sender, RoutedEventArgs e)
+        {
+            ActiveItem.Content = new DataInquiry();
+            StsResult.Content = "데이터 조회";
+            StsResult.Content = "데이터 조회";
         }
     }
 }

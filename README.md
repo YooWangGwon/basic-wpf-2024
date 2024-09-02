@@ -107,10 +107,10 @@
         - Model DB작업 독립적으로 구현
 
     - MVVM 구현을 도와주는 프레임워크
-        0. ~~MVVMlight.ToolKit~~ 3rd Party 개발. 2009년부터 시작 2014년도 이후부터는 더이상 개발이나 지원이 없음
-        1. **Caliburn.Micro** : 3rd Party 개발. MVVM이 아주 간단, 중소형 프로젝트에 적합. 강력 but 디버깅이 조금 어려움 
+        1. ~~MVVMlight.ToolKit~~ 3rd Party 개발. 2009년부터 시작 2014년도 이후부터는 더이상 개발이나 지원이 없음
+        2. **Caliburn.Micro** : 3rd Party 개발. MVVM이 아주 간단, 중소형 프로젝트에 적합. 강력 but 디버깅이 조금 어려움 
         3. AvaloniaUI : 3rd Party 개발. 크로스플랫폼. 디자인은 가장 좋음
-        2. Prism : Microsoft 개발. 매우 어려움. 대규모 프로젝트 활용
+        4. Prism : Microsoft 개발. 매우 어려움. 대규모 프로젝트 활용
 
 - Caliburn.Micro
     1. 프로젝트 생성 후 MainWindow.xaml 삭제
